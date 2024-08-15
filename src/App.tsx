@@ -1,9 +1,15 @@
-function App() {
+import React from 'react';
+import './index.css';
+import RoutesMap from './components/RoutesMap.tsx';
+import Header from './components/Header.tsx';
+
+const App: React.FC = () => {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <div className="App container mx-auto p-4">
+      <Header />
+      <RoutesMap />
+    </div>
   );
-}
+};
 
 export default App;

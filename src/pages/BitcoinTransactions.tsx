@@ -1,44 +1,52 @@
 import React from 'react';
-import useBitcoinTransactions from '../hooks/useBitcoinTransactions.ts';
+import ActionButton from '../components/BitconTansactions/ActionButton';
+import { ButtonColor, ButtonStatus } from '../types/enums';
+import useBitcoinTransactions from '../hooks/useBitcoinTransactions';
+import TransactionItem from '../components/BitconTansactions/TransactionItem.tsx';
 
 const BitcoinTransactions: React.FC = () => {
-  const { transactions, sum, connect, disconnect, reset } =
+  const { transactions, sum, connect, disconnect, reset, lastAction } =
     useBitcoinTransactions();
 
   return (
     <div className="p-4">
-      <div className="mb-4">
-        <button
+      <div className="mb-4 flex justify-center items-center">
+        <ActionButton
           onClick={connect}
-          className="bg-green-500 text-white px-4 py-2 rounded mr-2"
-        >
-          Запуск
-        </button>
-        <button
+          color={ButtonColor.Green}
+          label="Запуск"
+          disabled={lastAction === ButtonStatus.Connect}
+        />
+        <ActionButton
           onClick={disconnect}
-          className="bg-red-500 text-white px-4 py-2 rounded mr-2"
-        >
-          Зупинка
-        </button>
-        <button
+          color={ButtonColor.Red}
+          label="Зупинка"
+          disabled={lastAction === ButtonStatus.Disconnect}
+        />
+        <ActionButton
           onClick={reset}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Скинути
-        </button>
+          color={ButtonColor.Blue}
+          label="Скинути"
+          disabled={lastAction === ButtonStatus.Reset}
+        />
       </div>
-      <div className="mb-4">Сума транзакцій: {sum.toFixed(8)} BTC</div>
-      <ul className="list-disc pl-5">
-        {transactions.map((tx) => (
-          <li key={tx.hash} className="mb-2">
-            {tx.hash} -{' '}
-            {(
-              tx.out.reduce((acc, output) => acc + output.value, 0) / 100000000
-            ).toFixed(8)}{' '}
-            BTC
-          </li>
-        ))}
-      </ul>
+      <div className="mb-4 font-bold text-xl text-center">
+        Сума транзакцій: {sum.toFixed(8)} BTC
+      </div>
+      <table className="w-full border-collapse border">
+        <thead>
+          <tr>
+            <th className="p-2 border">From</th>
+            <th className="p-2 border">To</th>
+            <th className="p-2 border">Sum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((tx) => (
+            <TransactionItem key={tx.hash} transaction={tx} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

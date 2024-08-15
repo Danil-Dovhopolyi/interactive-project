@@ -3,3 +3,8 @@ export enum ButtonColor {
   Red = 'red',
   Blue = 'blue',
 }
+export enum ButtonStatus {
+  Connect = 'connect',
+  Disconnect = 'disconnect',
+  Reset = 'reset',
+}
