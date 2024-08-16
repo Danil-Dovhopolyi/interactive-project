@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { RawTransactionData, Transaction } from '../types/types';
+import {
+  RawTransactionData,
+  Transaction,
+} from '../types/BitcoinTransaction/types.ts';
 
 const useBitcoinTransactions = () => {
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
