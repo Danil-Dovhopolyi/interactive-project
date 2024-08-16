@@ -1,8 +1,11 @@
 import React from 'react';
 import ActionButton from '../components/BitconTansactions/ActionButton';
-import { ButtonColor, ButtonStatus } from '../types/enums';
 import useBitcoinTransactions from '../hooks/useBitcoinTransactions';
 import TransactionItem from '../components/BitconTansactions/TransactionItem.tsx';
+import {
+  ButtonColor,
+  ButtonStatus,
+} from '../types/BitcoinTransaction/enums.ts';
 
 const BitcoinTransactions: React.FC = () => {
   const { transactions, sum, connect, disconnect, reset, lastAction } =

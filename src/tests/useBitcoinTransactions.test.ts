@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 
-import { RawTransactionData } from '../types/types';
 import useBitcoinTransactions from '../hooks/useBitcoinTransactions.ts';
+import { RawTransactionData } from '../types/BitcoinTransaction/types.ts';
 
 describe('useBitcoinTransactions', () => {
   it('should handle incoming transactions in WebSocket message handler', () => {
