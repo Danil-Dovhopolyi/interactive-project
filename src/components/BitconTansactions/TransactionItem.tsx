@@ -1,9 +1,12 @@
 import React from 'react';
-import { Transaction } from '../../types/types.ts';
+import { Transaction } from '../../types/BitcoinTransaction/types.ts';
+import { SATOSHI_TO_BTC } from '../../constans/constans.ts';
 
 interface TransactionItemProps {
   transaction: Transaction;
 }
+
+const BLOCKCHAIN_BASE_URL = 'https://www.blockchain.com/btc/address/';
 
 const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
   return (
@@ -12,7 +15,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
         {transaction.inputs.map((input, index) => (
           <div key={index} className="mb-1">
             <a
-              href={`https://www.blockchain.com/btc/address/${input.prev_out.addr}`}
+              href={`${BLOCKCHAIN_BASE_URL}${input.prev_out.addr}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 underline"
@@ -26,7 +29,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
         {transaction.out.map((output, index) => (
           <div key={index} className="mb-1">
             <a
-              href={`https://www.blockchain.com/btc/address/${output.addr}`}
+              href={`${BLOCKCHAIN_BASE_URL}${output.addr}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 underline"
@@ -39,7 +42,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
       <td className="p-2 border">
         {(
           transaction.out.reduce((acc, output) => acc + output.value, 0) /
-          100000000
+          SATOSHI_TO_BTC
         ).toFixed(8)}{' '}
         BTC
       </td>
