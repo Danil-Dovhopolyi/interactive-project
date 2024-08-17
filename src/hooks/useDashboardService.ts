@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Layout } from 'react-grid-layout';
-import { GridItem } from '../types/types';
+import { GridItem } from '../types/GridLayout/types.ts';
 import { useLocalStorage } from './useLocalStorage';
 
 export const useDashboardService = () => {

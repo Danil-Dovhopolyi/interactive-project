@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { initialItems } from '../constans/constans';
-import { GridItem } from '../types/types';
+import { GridItem } from '../types/GridLayout/types.ts';
 
 export const useLocalStorage = (
   key: string,

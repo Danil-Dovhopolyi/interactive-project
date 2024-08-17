@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { GridItem } from '../types/types';
+import { GridItem } from '../types/GridLayout/types.ts';
 import { initialItems } from '../constans/constans';
 
 describe('useLocalStorage', () => {
@@ -32,7 +32,7 @@ describe('useLocalStorage', () => {
     const { result } = renderHook(() => useLocalStorage(key));
 
     act(() => {
-      result.current[1](newItems); // setItems
+      result.current[1](newItems);
     });
 
     const storedItems = localStorage.getItem(key);
@@ -59,7 +59,7 @@ describe('useLocalStorage', () => {
           maxH: 12,
           zIndex: 1,
         },
-      ]); // setItems to something different
+      ]);
     });
 
     act(() => {

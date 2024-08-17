@@ -1,6 +1,5 @@
 import React from 'react';
-import { ButtonColor } from '../../types/enums.ts';
-
+import { ButtonColor } from '../../types/BitcoinTransaction/enums.ts';
 interface ActionButtonProps {
   onClick: () => void;
   color: ButtonColor;
