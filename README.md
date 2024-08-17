@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+### Використані технології
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Tailwind CSS**
+- **TypeScript**
+- **WebSocket**
+- **react-grid-layout**
+- **ESLint**
+- **Prettier**
 
-Currently, two official plugins are available:
+### Обґрунтування вибору
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### Tailwind CSS
+- **Ефективність**: Швидке створення стилів без зайвого CSS-коду.
+- **Гнучкість**: Просте налаштування зовнішнього вигляду елементів через утилітарні класи.
+- **Консистентність**: Єдина система класів допомагає підтримувати цілісність дизайну в проєкті.
 
-## Expanding the ESLint configuration
+#### TypeScript
+- **Типізація**: Знижує кількість помилок завдяки статичній перевірці типів.
+- **Продуктивність**: Зручне автодоповнення і перевірка типів прискорюють розробку.
+- **Масштабованість**: Робить код більш підтримуваним і легким для розширення.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### WebSocket
+- **Реальний час**: Дозволяє миттєво отримувати та обробляти Bitcoin транзакції.
+- **Стійке з'єднання**: Підтримує постійний зв’язок із сервером для динамічного оновлення даних.
 
-- Configure the top-level `parserOptions` property like this:
+#### react-grid-layout
+- **Відповідність вимогам**: Ідеально підходить для інтерактивних робочих столів, забезпечуючи всі необхідні функції.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+#### ESLint
+- **Кодова чистота**: Налаштований для підтримки єдиного стилю коду та запобігання помилкам.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Prettier
+- **Автоматичне форматування**: Забезпечує чистоту та однорідність коду у всьому проєкті.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Використані підходи та логіка
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### useBitcoinTransactions
+- **WebSocket**: Застосовується для постійного з'єднання та отримання транзакцій у реальному часі, що важливо для миттєвого оновлення даних.
+- **Масив `transactions`**: Використовується для зберігання транзакцій, дозволяючи легко додавати нові дані та підтримувати їх у впорядкованому вигляді.
+
+#### useDashboardService
+- **localStorage**: Зберігає стан макету, дозволяючи користувачеві відновити інтерфейс після перезавантаження сторінки.
+- **Функції для роботи з елементами**: Реалізують додавання, видалення та зміну елементів на панелі, забезпечуючи гнучкість користувацького інтерфейсу.
+- **Масив `items`**: Використовується для зберігання елементів панелі, що дозволяє легко керувати їх порядком та розташуванням.
+
+#### useLocalStorage
+- **useState**: Керує станом збережених елементів, забезпечуючи ефективне оновлення та зберігання даних.
+- **Скидання стану (`resetItems`)**: Відновлює початковий макет, дозволяючи легко повернутися до вихідного стану.
+- **Оновлення localStorage**: Автоматично синхронізує стан панелі з локальним сховищем, зберігаючи актуальність даних.
